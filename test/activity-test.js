@@ -6,6 +6,8 @@ const UsersRepository = require('../src/UsersRepository');
 
 describe('Activity', function() {
   let activityData;
+  let activityData1
+  let activityData2
   let userDataSetSample;
   let userRepository;
   let activity;
@@ -118,6 +120,122 @@ describe('Activity', function() {
         "numSteps": 10289,
         "minutesActive": 119,
         "flightsOfStairs": 6
+      },
+      {
+        "userID": 2,
+        "date": "2019/06/22",
+        "numSteps": 3605,
+        "minutesActive": 124,
+        "flightsOfStairs": 31
+      }
+    ];
+
+    activityData1 = [
+      {
+        "userID": 1,
+        "date": "2019/06/15",
+        "numSteps": 4294,
+        "minutesActive": 138,
+        "flightsOfStairs": 10
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/16",
+        "numSteps": 4112,
+        "minutesActive": 220,
+        "flightsOfStairs": 37
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/17",
+        "numSteps": 3750,
+        "minutesActive": 65,
+        "flightsOfStairs": 4
+      },      {
+        "userID": 1,
+        "date": "2019/06/18",
+        "numSteps": 4662,
+        "minutesActive": 181,
+        "flightsOfStairs": 31
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/19",
+        "numSteps": 858,
+        "minutesActive": 55,
+        "flightsOfStairs": 44
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/20",
+        "numSteps": 10153,
+        "minutesActive": 74,
+        "flightsOfStairs": 10
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/21",
+        "numSteps": 225,
+        "minutesActive": 30,
+        "flightsOfStairs": 26
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/22",
+        "numSteps": 3605,
+        "minutesActive": 124,
+        "flightsOfStairs": 31
+      }
+    ];
+
+    activityData2 = [
+      {
+        "userID": 2,
+        "date": "2019/06/15",
+        "numSteps": 4294,
+        "minutesActive": 138,
+        "flightsOfStairs": 10
+      },
+      {
+        "userID": 2,
+        "date": "2019/06/16",
+        "numSteps": 4112,
+        "minutesActive": 220,
+        "flightsOfStairs": 37
+      },
+      {
+        "userID": 2,
+        "date": "2019/06/17",
+        "numSteps": 13750,
+        "minutesActive": 65,
+        "flightsOfStairs": 4
+      },      {
+        "userID": 2,
+        "date": "2019/06/18",
+        "numSteps": 4662,
+        "minutesActive": 181,
+        "flightsOfStairs": 31
+      },
+      {
+        "userID": 2,
+        "date": "2019/06/19",
+        "numSteps": 9858,
+        "minutesActive": 243,
+        "flightsOfStairs": 44
+      },
+      {
+        "userID": 2,
+        "date": "2019/06/20",
+        "numSteps": 10153,
+        "minutesActive": 74,
+        "flightsOfStairs": 10
+      },
+      {
+        "userID": 2,
+        "date": "2019/06/21",
+        "numSteps": 10225,
+        "minutesActive": 174,
+        "flightsOfStairs": 26
       },
       {
         "userID": 2,
@@ -329,156 +447,61 @@ describe('Activity', function() {
   });
 
   it("should return user\'s steps summary for week", function() {
-    expect(activity.findUsersWeeklyStepsData(userDateRange)).to.deep.equal(
+    expect(activity.findUsersWeeklyActivityData(userDateRange)).to.deep.equal(
       [
-        { date: '2019/06/16', numSteps: 6637 },
-        { date: '2019/06/17', numSteps: 14329 },
-        { date: '2019/06/18', numSteps: 4419 },
-        { date: '2019/06/19', numSteps: 8429 },
-        { date: '2019/06/20', numSteps: 14478 },
-        { date: '2019/06/21', numSteps: 6760 },
-        { date: '2019/06/22', numSteps: 10289 }
-      ]
-    );
+        { date: '2019/06/16', numSteps: 6637, minutesActive: 175 },
+        { date: '2019/06/17', numSteps: 14329, minutesActive: 168 },
+        { date: '2019/06/18', numSteps: 4419, minutesActive: 165 },
+        { date: '2019/06/19', numSteps: 8429, minutesActive: 275 },
+        { date: '2019/06/20', numSteps: 14478, minutesActive: 140 },
+        { date: '2019/06/21', numSteps: 6760, minutesActive: 135 },
+        { date: '2019/06/22', numSteps: 10289, minutesActive: 119 }
+      ])
   });
 
   it("should return user\'s no trend of days of increase steps", function() {
-    const activityData1 = [
-      {
-        "userID": 1,
-        "date": "2019/06/15",
-        "numSteps": 4294,
-        "minutesActive": 138,
-        "flightsOfStairs": 10
-      },
-      {
-        "userID": 1,
-        "date": "2019/06/16",
-        "numSteps": 4112,
-        "minutesActive": 220,
-        "flightsOfStairs": 37
-      },
-      {
-        "userID": 1,
-        "date": "2019/06/17",
-        "numSteps": 3750,
-        "minutesActive": 65,
-        "flightsOfStairs": 4
-      },      {
-        "userID": 1,
-        "date": "2019/06/18",
-        "numSteps": 4662,
-        "minutesActive": 181,
-        "flightsOfStairs": 31
-      },
-      {
-        "userID": 1,
-        "date": "2019/06/19",
-        "numSteps": 858,
-        "minutesActive": 243,
-        "flightsOfStairs": 44
-      },
-      {
-        "userID": 1,
-        "date": "2019/06/20",
-        "numSteps": 10153,
-        "minutesActive": 74,
-        "flightsOfStairs": 10
-      },
-      {
-        "userID": 1,
-        "date": "2019/06/21",
-        "numSteps": 225,
-        "minutesActive": 174,
-        "flightsOfStairs": 26
-      },
-      {
-        "userID": 1,
-        "date": "2019/06/22",
-        "numSteps": 3605,
-        "minutesActive": 124,
-        "flightsOfStairs": 31
-      }
-    ];
-
     let activity = new Activity(userRepository, activityData1);
-    let userWeeklyStepsData = activity.findUsersWeeklyStepsData(userDateRange);
+    let userWeeklyStepsData = activity.findUsersWeeklyActivityData(userDateRange);
 
     expect(activity.findNumsStepTrends(userWeeklyStepsData)).to
       .equal("No steps increase trend over 3 days")
   })
 
   it("should return user\'s trend of days of increase steps", function() {
-    const activityData2 = [
-      {
-        "userID": 2,
-        "date": "2019/06/15",
-        "numSteps": 4294,
-        "minutesActive": 138,
-        "flightsOfStairs": 10
-      },
-      {
-        "userID": 2,
-        "date": "2019/06/16",
-        "numSteps": 4112,
-        "minutesActive": 220,
-        "flightsOfStairs": 37
-      },
-      {
-        "userID": 2,
-        "date": "2019/06/17",
-        "numSteps": 13750,
-        "minutesActive": 65,
-        "flightsOfStairs": 4
-      },      {
-        "userID": 2,
-        "date": "2019/06/18",
-        "numSteps": 4662,
-        "minutesActive": 181,
-        "flightsOfStairs": 31
-      },
-      {
-        "userID": 2,
-        "date": "2019/06/19",
-        "numSteps": 9858,
-        "minutesActive": 243,
-        "flightsOfStairs": 44
-      },
-      {
-        "userID": 2,
-        "date": "2019/06/20",
-        "numSteps": 10153,
-        "minutesActive": 74,
-        "flightsOfStairs": 10
-      },
-      {
-        "userID": 2,
-        "date": "2019/06/21",
-        "numSteps": 10225,
-        "minutesActive": 174,
-        "flightsOfStairs": 26
-      },
-      {
-        "userID": 2,
-        "date": "2019/06/22",
-        "numSteps": 3605,
-        "minutesActive": 124,
-        "flightsOfStairs": 31
-      }
-    ];
-
     let userRepository = new UsersRepository(2);
-    let userData = userRepository.getUserDataById(userDataSetSample);
     let activity = new Activity(userRepository, activityData2);
-    let userWeeklyStepsData = activity.findUsersWeeklyStepsData(userDateRange);
+    let userWeeklyStepsData = activity.findUsersWeeklyActivityData(userDateRange);
 
     expect(activity.findNumsStepTrends(userWeeklyStepsData)).to.deep.equal(
       [
-        { date: '2019/06/18', numSteps: 4662 },
-        { date: '2019/06/19', numSteps: 9858 },
-        { date: '2019/06/20', numSteps: 10153 },
-        { date: '2019/06/21', numSteps: 10225 }
+        { date: '2019/06/18', numSteps: 4662, minutesActive: 181 },
+        { date: '2019/06/19', numSteps: 9858, minutesActive: 243 },
+        { date: '2019/06/20', numSteps: 10153, minutesActive: 74 },
+        { date: '2019/06/21', numSteps: 10225, minutesActive: 174 }
       ])
   })
+
+  it("should return user\'s no trend of days of increase active minutes",
+    function() {
+      let activity = new Activity(userRepository, activityData1);
+      let userWeeklyStepsData = activity.findUsersWeeklyActivityData(userDateRange);
+
+      expect(activity.findMinutesActiveTrends(userWeeklyStepsData)).to
+        .equal("No minutes active increase trend over 3 days")
+  })
+
+  it("should return user\'s trend of days of increase minutes active",
+    function() {
+      let userRepository = new UsersRepository(2);
+      let activity = new Activity(userRepository, activityData2);
+      let userWeeklyStepsData = activity.findUsersWeeklyActivityData(userDateRange);
+
+      expect(activity.findMinutesActiveTrends(userWeeklyStepsData)).to.deep.equal(
+        [
+          { date: '2019/06/17', numSteps: 13750, minutesActive: 65 },
+          { date: '2019/06/18', numSteps: 4662, minutesActive: 181 },
+          { date: '2019/06/19', numSteps: 9858, minutesActive: 243 }
+        ])
+    })
 
 });

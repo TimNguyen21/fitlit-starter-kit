@@ -189,14 +189,14 @@ class Activity {
     return friendsTotalInfo.sort((a, b) => b.stepTotal - a.stepTotal);
   }
 
-  findUsersWeeklyStepsData(dateRange) {
+  findUsersWeeklyActivityData(dateRange) {
   let userActivitySummary = [];
   dateRange.forEach(day => {
     userActivitySummary.push(this.usersActivityData.find(data => data.userID === this.userID && data.date === day));
   })
 
   let usersStepSummary = userActivitySummary.map(data => {
-    return {date: data["date"], numSteps: data["numSteps"]}
+    return {date: data["date"], numSteps: data["numSteps"], minutesActive: data["minutesActive"]}
   })
 
   return usersStepSummary;
@@ -225,6 +225,31 @@ class Activity {
     return overThreeArray
     } else {
     return `No steps increase trend over 3 days`
+    }
+  }
+
+  findMinutesActiveTrends(weeklyStepsData) {
+  let array = []
+  let overThreeArray = []
+  let currentStepCount = 0
+
+  weeklyStepsData.forEach(data => {
+    if (data.minutesActive >= currentStepCount) {
+      array.push(data);
+      currentStepCount = data.minutesActive;
+      if (array.length >= 3) {
+        overThreeArray = array;
+      }
+    } else if (data.minutesActive < currentStepCount) {
+      currentStepCount = 0;
+      array = [data];
+    }
+  })
+
+  if (overThreeArray.length > 2) {
+    return overThreeArray
+    } else {
+    return `No minutes active increase trend over 3 days`
     }
   }
 }
