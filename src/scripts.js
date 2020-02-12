@@ -33,30 +33,11 @@ window.onload = function() {
   const activity = new Activity(usersRepository, activityData);
   const userDateRange = ["2019/06/16","2019/06/17","2019/06/18","2019/06/19","2019/06/20","2019/06/21","2019/06/22"];
   const currentDate = '2019/06/22';
-  welcomeDisplay.innerText = `Welcome, ${user.returnUserFirstName()}!`;
-  userFullName.innerText = `Full Name: ${user.name}`;
-  userAddress.innerText = `Address: ${user.address}`;
-  userEmail.innerText = `Email: ${user.email}`;
-  userStrideLength.innerText = `Stride Length: ${user.strideLength}`;
-  userStepGoal.innerText = `Your Daily Step Goal: ${user.dailyStepGoal}`;
-  allUsersAvgStepGoal.innerText = `Average User's Step Goal: ${usersRepository.calculateAverageStepGoal(userData)}`;
-
-  // activity section
-  let currentUserActivityData = activity.findUserActivityDataByDate(currentDate);
-  totalStepsOfCurrentDay.innerText = currentUserActivityData.numSteps;
-  flightsOfStairsOfCurrentDay.innerText = currentUserActivityData.flightsOfStairs;
-  minutesActiveOfCurrentDay.innerText = activity.findMinutesActiveByDay(currentDate);
-  milesWalkedOfCurrentDay.innerText = activity.findMilesWalkedByDay(userInfo, currentDate);
-  allUserAverageStepsOfCurrentDay.innerText = `Average Steps Taken: ${activity.findAllUserAverageStepsTakeForSpecificDate(currentDate)}`;
-  allUserAverageMinutesActiveOfCurrentDay.innerText = `Average Minutes Active: ${activity.findAllUserAverageMinutesActiveForSpecificDate(currentDate)}`;
-  allUserAverageFlightStairsOfCurrentDay.innerText = `Average Flight of Stairs Climb: ${activity.findAllUserAverageStairsClimbedForSpecificDate(currentDate)}`;
-
-  let currentWeekUserActivityData = activity.findUserDailyActivityDataForWeek(userDateRange);
-  userWeeklyActivityInfo.innerHTML = activityWeek(currentWeekUserActivityData);
- sleepHandler();
- hydrationHandler();
+   sleepHandler();
+   hydrationHandler();
+   activityHandler();
+   profileHandler();
 }
-
 
 function sleepHandler() {
   const usersRepository = new UsersRepository(getRandomNumber());
@@ -89,7 +70,37 @@ function hydrationHandler() {
   userWeeklyOunceIntake.innerHTML = hydrationWeek(userIntakeForWeek);
 }
 
+ function activityHandler() {
+  const usersRepository = new UsersRepository(getRandomNumber());
+  const userInfo = usersRepository.getUserDataById(userData);
+  const user = new User(userInfo);
+  const activity = new Activity(usersRepository, activityData);
+  const userDateRange = ["2019/06/16","2019/06/17","2019/06/18","2019/06/19","2019/06/20","2019/06/21","2019/06/22"];
+  const currentDate = '2019/06/22';
+  let currentUserActivityData = activity.findUserActivityDataByDate(currentDate);
+  totalStepsOfCurrentDay.innerText = currentUserActivityData.numSteps;
+  flightsOfStairsOfCurrentDay.innerText = currentUserActivityData.flightsOfStairs;
+  minutesActiveOfCurrentDay.innerText = activity.findMinutesActiveByDay(currentDate);
+  milesWalkedOfCurrentDay.innerText = activity.findMilesWalkedByDay(userInfo, currentDate);
+  allUserAverageStepsOfCurrentDay.innerText = `Average Steps Taken: ${activity.findAllUserAverageStepsTakeForSpecificDate(currentDate)}`;
+  allUserAverageMinutesActiveOfCurrentDay.innerText = `Average Minutes Active: ${activity.findAllUserAverageMinutesActiveForSpecificDate(currentDate)}`;
+  allUserAverageFlightStairsOfCurrentDay.innerText = `Average Flight of Stairs Climb: ${activity.findAllUserAverageStairsClimbedForSpecificDate(currentDate)}`;
+  let currentWeekUserActivityData = activity.findUserDailyActivityDataForWeek(userDateRange);
+  userWeeklyActivityInfo.innerHTML = activityWeek(currentWeekUserActivityData);
+}
 
+function profileHandler() {
+  const usersRepository = new UsersRepository(getRandomNumber());
+  const userInfo = usersRepository.getUserDataById(userData);
+  const user = new User(userInfo);
+  welcomeDisplay.innerText = `Welcome, ${user.returnUserFirstName()}!`;
+  userFullName.innerText = `Full Name: ${user.name}`;
+  userAddress.innerText = `Address: ${user.address}`;
+  userEmail.innerText = `Email: ${user.email}`;
+  userStrideLength.innerText = `Stride Length: ${user.strideLength}`;
+  userStepGoal.innerText = `Your Daily Step Goal: ${user.dailyStepGoal}`;
+  allUsersAvgStepGoal.innerText = `Average User's Step Goal: ${usersRepository.calculateAverageStepGoal(userData)}`;
+}
 
 function sleepWeekHours(userWeekSleep) {
   return userWeekSleep.reduce((acc, el) => {
