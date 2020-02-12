@@ -33,7 +33,6 @@ window.onload = function() {
   const activity = new Activity(usersRepository, activityData);
   const userDateRange = ["2019/06/16","2019/06/17","2019/06/18","2019/06/19","2019/06/20","2019/06/21","2019/06/22"];
   const currentDate = '2019/06/22';
-
   welcomeDisplay.innerText = `Welcome, ${user.returnUserFirstName()}!`;
   userFullName.innerText = `Full Name: ${user.name}`;
   userAddress.innerText = `Address: ${user.address}`;
@@ -46,17 +45,7 @@ window.onload = function() {
   userAverageOunceIntakeAllTime.innerText = `Your Average fl oz Intake: ${hydration.calculateAverageFluidIntakeForUser()}`;
   currentUserDate.innerText = `Today's Date: ${currentDate}`;
   userOunceIntakeOnDay.innerText = `Today's fl oz Intake: ${hydration.calculateFluidIntakeForDay(currentDate)}`;
-
-  hoursSlept.innerText = `Hours Slept Today: ${sleep.findSleepTimeByDate(currentDate)}`;
-  qualitySlept.innerText = `Quality of Sleep Today: ${sleep.findSleepQualityByDate(currentDate)}`;
-  averageSleepHours.innerText = `Your Average Overall Hours Slept: ${sleep.calculateAverageSleepTimeOverall()}`;
-  averageSleepQuality.innerText = `Your Average Overall Sleep Quality: ${sleep.calculateAverageSleepQualityOverall()}`;
-  let userWeeklySleepHours = sleep.findAverageSleepHourByWeek(userDateRange);
-  weeklySleepHours.innerHTML = sleepWeekHours(userWeeklySleepHours);
-  let userWeeklySleepQuality = sleep.findAverageSleepQualityByWeek(userDateRange);
-  weeklySleepQuality.innerHTML = sleepWeekQuality(userWeeklySleepQuality);
-
-
+  
   let userIntakeForWeek = hydration.calculateDailyIntakeForWeek(userDateRange);
   userWeeklyOunceIntake.innerHTML = hydrationWeek(userIntakeForWeek);
 
@@ -72,8 +61,28 @@ window.onload = function() {
 
   let currentWeekUserActivityData = activity.findUserDailyActivityDataForWeek(userDateRange);
   userWeeklyActivityInfo.innerHTML = activityWeek(currentWeekUserActivityData);
-
+ sleepHandler();
 }
+
+
+function sleepHandler() {
+  const usersRepository = new UsersRepository(getRandomNumber());
+  const userInfo = usersRepository.getUserDataById(userData);
+  const user = new User(userInfo);
+  const sleep = new Sleep(usersRepository, sleepData);
+  const userDateRange = ["2019/06/16","2019/06/17","2019/06/18","2019/06/19","2019/06/20","2019/06/21","2019/06/22"];
+  const currentDate = '2019/06/22';
+  hoursSlept.innerText = `Hours Slept Today: ${sleep.findSleepTimeByDate(currentDate)}`;
+  qualitySlept.innerText = `Quality of Sleep Today: ${sleep.findSleepQualityByDate(currentDate)}`;
+  averageSleepHours.innerText = `Your Average Overall Hours Slept: ${sleep.calculateAverageSleepTimeOverall()}`;
+  averageSleepQuality.innerText = `Your Average Overall Sleep Quality: ${sleep.calculateAverageSleepQualityOverall()}`;
+  let userWeeklySleepHours = sleep.findAverageSleepHourByWeek(userDateRange);
+  weeklySleepHours.innerHTML = sleepWeekHours(userWeeklySleepHours);
+  let userWeeklySleepQuality = sleep.findAverageSleepQualityByWeek(userDateRange);
+  weeklySleepQuality.innerHTML = sleepWeekQuality(userWeeklySleepQuality);
+}
+
+
 
 function sleepWeekHours(userWeekSleep) {
   return userWeekSleep.reduce((acc, el) => {
