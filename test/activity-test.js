@@ -328,4 +328,157 @@ describe('Activity', function() {
       { name: 'Jarvis Considine', stepTotal: 54365 }]);
   });
 
+  it("should return user\'s steps summary for week", function() {
+    expect(activity.findUsersWeeklyStepsData(userDateRange)).to.deep.equal(
+      [
+        { date: '2019/06/16', numSteps: 6637 },
+        { date: '2019/06/17', numSteps: 14329 },
+        { date: '2019/06/18', numSteps: 4419 },
+        { date: '2019/06/19', numSteps: 8429 },
+        { date: '2019/06/20', numSteps: 14478 },
+        { date: '2019/06/21', numSteps: 6760 },
+        { date: '2019/06/22', numSteps: 10289 }
+      ]
+    );
+  });
+
+  it("should return user\'s no trend of days of increase steps", function() {
+    const activityData1 = [
+      {
+        "userID": 1,
+        "date": "2019/06/15",
+        "numSteps": 4294,
+        "minutesActive": 138,
+        "flightsOfStairs": 10
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/16",
+        "numSteps": 4112,
+        "minutesActive": 220,
+        "flightsOfStairs": 37
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/17",
+        "numSteps": 3750,
+        "minutesActive": 65,
+        "flightsOfStairs": 4
+      },      {
+        "userID": 1,
+        "date": "2019/06/18",
+        "numSteps": 4662,
+        "minutesActive": 181,
+        "flightsOfStairs": 31
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/19",
+        "numSteps": 858,
+        "minutesActive": 243,
+        "flightsOfStairs": 44
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/20",
+        "numSteps": 10153,
+        "minutesActive": 74,
+        "flightsOfStairs": 10
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/21",
+        "numSteps": 225,
+        "minutesActive": 174,
+        "flightsOfStairs": 26
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/22",
+        "numSteps": 3605,
+        "minutesActive": 124,
+        "flightsOfStairs": 31
+      }
+    ];
+
+    let activity = new Activity(userRepository, activityData1);
+    let userWeeklyStepsData = activity.findUsersWeeklyStepsData(userDateRange);
+
+    expect(activity.findNumsStepTrends(userWeeklyStepsData)).to
+      .equal("No steps increase trend over 3 days")
+  })
+
+  it("should return user\'s trend of days of increase steps", function() {
+    const activityData2 = [
+      {
+        "userID": 2,
+        "date": "2019/06/15",
+        "numSteps": 4294,
+        "minutesActive": 138,
+        "flightsOfStairs": 10
+      },
+      {
+        "userID": 2,
+        "date": "2019/06/16",
+        "numSteps": 4112,
+        "minutesActive": 220,
+        "flightsOfStairs": 37
+      },
+      {
+        "userID": 2,
+        "date": "2019/06/17",
+        "numSteps": 13750,
+        "minutesActive": 65,
+        "flightsOfStairs": 4
+      },      {
+        "userID": 2,
+        "date": "2019/06/18",
+        "numSteps": 4662,
+        "minutesActive": 181,
+        "flightsOfStairs": 31
+      },
+      {
+        "userID": 2,
+        "date": "2019/06/19",
+        "numSteps": 9858,
+        "minutesActive": 243,
+        "flightsOfStairs": 44
+      },
+      {
+        "userID": 2,
+        "date": "2019/06/20",
+        "numSteps": 10153,
+        "minutesActive": 74,
+        "flightsOfStairs": 10
+      },
+      {
+        "userID": 2,
+        "date": "2019/06/21",
+        "numSteps": 10225,
+        "minutesActive": 174,
+        "flightsOfStairs": 26
+      },
+      {
+        "userID": 2,
+        "date": "2019/06/22",
+        "numSteps": 3605,
+        "minutesActive": 124,
+        "flightsOfStairs": 31
+      }
+    ];
+
+    let userRepository = new UsersRepository(2);
+    let userData = userRepository.getUserDataById(userDataSetSample);
+    let activity = new Activity(userRepository, activityData2);
+    let userWeeklyStepsData = activity.findUsersWeeklyStepsData(userDateRange);
+
+    expect(activity.findNumsStepTrends(userWeeklyStepsData)).to.deep.equal(
+      [
+        { date: '2019/06/18', numSteps: 4662 },
+        { date: '2019/06/19', numSteps: 9858 },
+        { date: '2019/06/20', numSteps: 10153 },
+        { date: '2019/06/21', numSteps: 10225 }
+      ])
+  })
+
 });
