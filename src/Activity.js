@@ -224,7 +224,7 @@ class Activity {
   if (overThreeArray.length > 2) {
     return overThreeArray
     } else {
-    return `No steps increase trend over 3 days`
+    return `No increasing steps trend over 3 days`
     }
   }
 
@@ -249,7 +249,7 @@ class Activity {
   if (overThreeArray.length > 2) {
     return overThreeArray
     } else {
-    return `No minutes active increase trend over 3 days`
+    return `No increased active minutes trend over 3 days`
     }
   }
 }

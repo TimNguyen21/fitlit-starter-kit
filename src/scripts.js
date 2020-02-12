@@ -3,6 +3,8 @@ let userFullName = document.querySelector('.full-name');
 let userAddress = document.querySelector('.address');
 let userEmail = document.querySelector('.email');
 let friendChallengesInfo = document.querySelector('.challenges-info');
+let stepTrendsInfo = document.querySelector('.step-trends-info');
+let activeTrendsInfo = document.querySelector('.active-trends-info');
 let userStrideLength = document.querySelector('.stride-length');
 let userStepGoal = document.querySelector('.daily-step-goal');
 let allUsersAvgStepGoal = document.querySelector('.all-users-step-goal-average');
@@ -92,6 +94,34 @@ function hydrationHandler() {
   let friendChallengeSummary = activity.findUserFriendsStepTotal(userFriends, userData, userDateRange);
   friendChallengesInfo.innerHTML = friendChallenge(friendChallengeSummary);
   // `friends: ${activity.findUserFriendsStepTotal(friends, userDataSet, dateRange)}`
+  let userWeeklyActivitySummary = activity.findUsersWeeklyActivityData(userDateRange);
+  let userStepTrendSummary = activity.findNumsStepTrends(userWeeklyActivitySummary);
+  displayStepTrend(userStepTrendSummary);
+  let userActiveMinsTrendSummary = activity.findMinutesActiveTrends(userWeeklyActivitySummary);
+  displayActiveMintrend(userActiveMinsTrendSummary);
+}
+
+function displayStepTrend(trendSummary) {
+  if(trendSummary == "No increasing steps trend over 3 days") {
+    stepTrendsInfo.innerText = trendSummary;
+  } else {
+    stepTrendsInfo.innerHTML = trendSummary.reduce((acc, el) => {
+      acc += `<div>Date: ${el.date}</div>
+              <div>Steps: ${el.numSteps}</div>`
+      return acc
+    }, ``)
+  }
+}
+function displayActiveMintrend(trendSummary) {
+  if(trendSummary == "No increased active minutes trend over 3 days") {
+    activeTrendsInfo.innerText = trendSummary;
+  } else {
+    activeTrendsInfo.innerHTML = trendSummary.reduce((acc, el) => {
+      acc += `<div>Date: ${el.date}</div>
+              <div>Steps: ${el.minutesActive}</div>`
+      return acc
+    }, ``)
+  }
 }
 
 function profileHandler() {

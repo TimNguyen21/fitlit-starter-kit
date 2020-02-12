@@ -21,7 +21,8 @@ main {
 .daily-sleep-section,
 .weekly-sleep-section,
 .activity-section,
-.challenges-section {
+.challenges-section,
+.trends-section {
   color: #002b66;
   background-color: #5CDB95;
   font-family: 'Noto Sans KR', sans-serif;
@@ -51,6 +52,7 @@ header {
 
 .profile-section{
   height: 15em;
+  width: 32em;
 }
 .activity-section {
   height: 70em;
@@ -68,9 +70,13 @@ header {
   height: 15em;
 }
 .challenges-section {
-  height: 10em;
-  width: 17em;
+  height: 15em;
+  width: 20em;
 }
 .current-date {
   font-size: .25em;
+}
+.trends-section {
+  height: 15em;
+  width: 20em;
 }
