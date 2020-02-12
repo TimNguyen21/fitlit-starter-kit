@@ -6,15 +6,15 @@
 }
 
 body {
-  /* background-color: #5CDB95; */
   background-color: #002b66;
 }
+
 main {
   background-color: white;
-  /* opacity: .5; */
   display: flex;
   flex-wrap: wrap;
 }
+
 .profile-section,
 .daily-hydration-section,
 .weekly-hydration-section,
@@ -25,27 +25,25 @@ main {
 .challenges-section,
 .trends-section,
 .daily-activity-section {
-  color: #002b66;
   background-color: #5CDB95;
-  font-family: 'Noto Sans KR', sans-serif;
-  opacity: .9;
-  height: 35em;
-  width: 33%;
   border-radius: 30px;
-  /* border: 1px solid black; */
-  /* border-radius: 10%; */
-  text-align: center;
+  color: #002b66;
+  font-family: 'Noto Sans KR', sans-serif;
+  height: 35em;
   margin: 2em;
+  opacity: .9;
   overflow: scroll;
+  text-align: center;
+  width: 33%;
 }
 
 header {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 5em;
-  text-align: center;
   background-color: #002b66;
   color: white;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 5em;
   padding-bottom: .3em;
+  text-align: center;
 }
 
 .display-name {
@@ -69,17 +67,16 @@ header {
   width: 24em;
   height: 15em;
 }
-.challenges-section {
-  height: 15em;
-  width: 20em;
-}
-.current-date {
-  font-size: .25em;
-}
+.challenges-section,
 .trends-section {
   height: 15em;
   width: 20em;
 }
+
+.current-date {
+  font-size: .25em;
+}
+
 .flame-icon {
   height: 1em;
   width: 1em;
