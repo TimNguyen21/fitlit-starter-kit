@@ -20,7 +20,10 @@ main {
 .weekly-hydration-section,
 .daily-sleep-section,
 .weekly-sleep-section,
-.activity-section {
+.activity-section,
+.challenges-section,
+.trends-section,
+.daily-activity-section {
   color: #002b66;
   background-color: #5CDB95;
   font-family: 'Noto Sans KR', sans-serif;
@@ -50,6 +53,7 @@ header {
 
 .profile-section{
   height: 15em;
+  width: 32em;
 }
 .activity-section {
   height: 70em;
@@ -60,9 +64,24 @@ header {
 }
 .daily-sleep-section {
   height: 12em;
-  width: 17em;
+  width: 22em;
 }
 .weekly-sleep-section {
   width: 18em;
   height: 15em;
+}
+.challenges-section {
+  height: 15em;
+  width: 20em;
+}
+.current-date {
+  font-size: .25em;
+}
+.trends-section {
+  height: 15em;
+  width: 20em;
+}
+.daily-activity-section {
+  height: 12em;
+  width: 30em;
 }
