@@ -446,7 +446,7 @@ describe('Activity', function() {
       { name: 'Jarvis Considine', stepTotal: 54365 }]);
   });
 
-  it("should return user\'s steps summary for week", function() {
+  it("should return user's steps summary for week", function() {
     expect(activity.findUsersWeeklyActivityData(userDateRange)).to.deep.equal(
       [
         { date: '2019/06/16', numSteps: 6637, minutesActive: 175 },
@@ -459,18 +459,20 @@ describe('Activity', function() {
       ])
   });
 
-  it("should return user\'s no trend of days of increase steps", function() {
+  it("should return user's no trend of days of increase steps", function() {
     let activity = new Activity(userRepository, activityData1);
-    let userWeeklyStepsData = activity.findUsersWeeklyActivityData(userDateRange);
+    let userWeeklyStepsData =
+      activity.findUsersWeeklyActivityData(userDateRange);
 
     expect(activity.findNumsStepTrends(userWeeklyStepsData)).to
       .equal("No steps increase trend over 3 days")
   })
 
-  it("should return user\'s trend of days of increase steps", function() {
+  it("should return user's trend of days of increase steps", function() {
     let userRepository = new UsersRepository(2);
     let activity = new Activity(userRepository, activityData2);
-    let userWeeklyStepsData = activity.findUsersWeeklyActivityData(userDateRange);
+    let userWeeklyStepsData =
+      activity.findUsersWeeklyActivityData(userDateRange);
 
     expect(activity.findNumsStepTrends(userWeeklyStepsData)).to.deep.equal(
       [
@@ -481,23 +483,25 @@ describe('Activity', function() {
       ])
   })
 
-  it("should return user\'s no trend of days of increase active minutes",
+  it("should return user's no trend of days of increase active minutes",
     function() {
       let activity = new Activity(userRepository, activityData1);
-      let userWeeklyStepsData = activity.findUsersWeeklyActivityData(userDateRange);
+      let userWeeklyStepsData =
+        activity.findUsersWeeklyActivityData(userDateRange);
 
       expect(activity.findMinutesActiveTrends(userWeeklyStepsData)).to
         .equal("No minutes active increase trend over 3 days")
-  })
+    })
 
-  it("should return user\'s trend of days of increase minutes active",
+  it("should return user's trend of days of increase minutes active",
     function() {
       let userRepository = new UsersRepository(2);
       let activity = new Activity(userRepository, activityData2);
-      let userWeeklyStepsData = activity.findUsersWeeklyActivityData(userDateRange);
+      let userWeeklyStepsData =
+        activity.findUsersWeeklyActivityData(userDateRange);
 
-      expect(activity.findMinutesActiveTrends(userWeeklyStepsData)).to.deep.equal(
-        [
+      expect(activity.findMinutesActiveTrends(userWeeklyStepsData))
+        .to.deep.equal([
           { date: '2019/06/17', numSteps: 13750, minutesActive: 65 },
           { date: '2019/06/18', numSteps: 4662, minutesActive: 181 },
           { date: '2019/06/19', numSteps: 9858, minutesActive: 243 }
