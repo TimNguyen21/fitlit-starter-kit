@@ -41,14 +41,6 @@ window.onload = function() {
   userStepGoal.innerText = `Your Daily Step Goal: ${user.dailyStepGoal}`;
   allUsersAvgStepGoal.innerText = `Average User's Step Goal: ${usersRepository.calculateAverageStepGoal(userData)}`;
 
-  // hydration section
-  userAverageOunceIntakeAllTime.innerText = `Your Average fl oz Intake: ${hydration.calculateAverageFluidIntakeForUser()}`;
-  currentUserDate.innerText = `Today's Date: ${currentDate}`;
-  userOunceIntakeOnDay.innerText = `Today's fl oz Intake: ${hydration.calculateFluidIntakeForDay(currentDate)}`;
-  
-  let userIntakeForWeek = hydration.calculateDailyIntakeForWeek(userDateRange);
-  userWeeklyOunceIntake.innerHTML = hydrationWeek(userIntakeForWeek);
-
   // activity section
   let currentUserActivityData = activity.findUserActivityDataByDate(currentDate);
   totalStepsOfCurrentDay.innerText = currentUserActivityData.numSteps;
@@ -62,6 +54,7 @@ window.onload = function() {
   let currentWeekUserActivityData = activity.findUserDailyActivityDataForWeek(userDateRange);
   userWeeklyActivityInfo.innerHTML = activityWeek(currentWeekUserActivityData);
  sleepHandler();
+ hydrationHandler();
 }
 
 
@@ -80,6 +73,20 @@ function sleepHandler() {
   weeklySleepHours.innerHTML = sleepWeekHours(userWeeklySleepHours);
   let userWeeklySleepQuality = sleep.findAverageSleepQualityByWeek(userDateRange);
   weeklySleepQuality.innerHTML = sleepWeekQuality(userWeeklySleepQuality);
+}
+
+function hydrationHandler() {
+  const usersRepository = new UsersRepository(getRandomNumber());
+  const userInfo = usersRepository.getUserDataById(userData);
+  const user = new User(userInfo);
+  const hydration = new Hydration(usersRepository, hydrationData);
+  const userDateRange = ["2019/06/16","2019/06/17","2019/06/18","2019/06/19","2019/06/20","2019/06/21","2019/06/22"];
+  const currentDate = '2019/06/22';
+  userAverageOunceIntakeAllTime.innerText = `Your Average fl oz Intake: ${hydration.calculateAverageFluidIntakeForUser()}`;
+  currentUserDate.innerText = `Today's Date: ${currentDate}`;
+  userOunceIntakeOnDay.innerText = `Today's fl oz Intake: ${hydration.calculateFluidIntakeForDay(currentDate)}`;
+  let userIntakeForWeek = hydration.calculateDailyIntakeForWeek(userDateRange);
+  userWeeklyOunceIntake.innerHTML = hydrationWeek(userIntakeForWeek);
 }
 
 
