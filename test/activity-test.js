@@ -465,7 +465,7 @@ describe('Activity', function() {
       activity.findUsersWeeklyActivityData(userDateRange);
 
     expect(activity.findNumsStepTrends(userWeeklyStepsData)).to
-      .equal("No steps increase trend over 3 days")
+      .equal("No increasing steps trend over 3 days")
   })
 
   it("should return user's trend of days of increase steps", function() {
@@ -490,7 +490,7 @@ describe('Activity', function() {
         activity.findUsersWeeklyActivityData(userDateRange);
 
       expect(activity.findMinutesActiveTrends(userWeeklyStepsData)).to
-        .equal("No minutes active increase trend over 3 days")
+        .equal("No increased active minutes trend over 3 days")
     })
 
   it("should return user's trend of days of increase minutes active",

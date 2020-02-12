@@ -36,10 +36,10 @@ window.onload = function() {
   const activity = new Activity(usersRepository, activityData);
   const userDateRange = ["2019/06/16","2019/06/17","2019/06/18","2019/06/19","2019/06/20","2019/06/21","2019/06/22"];
   const currentDate = '2019/06/22';
-   sleepHandler();
-   hydrationHandler();
-   activityHandler();
-   profileHandler();
+  sleepHandler();
+  hydrationHandler();
+  activityHandler();
+  profileHandler();
 }
 
 function sleepHandler() {
@@ -181,6 +181,6 @@ function activityWeek(currentWeekUserActivityData) {
 }
 
 function getRandomNumber() {
- randomNumber = Math.floor(Math.random() * (50 - 1) + 1);
- return randomNumber;
+  randomNumber = Math.floor(Math.random() * (50 - 1) + 1);
+  return randomNumber;
 }
