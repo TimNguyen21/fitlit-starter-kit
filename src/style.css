@@ -20,7 +20,8 @@ main {
 .weekly-hydration-section,
 .daily-sleep-section,
 .weekly-sleep-section,
-.activity-section {
+.activity-section,
+.challenges-section {
   color: #002b66;
   background-color: #5CDB95;
   font-family: 'Noto Sans KR', sans-serif;
@@ -65,4 +66,11 @@ header {
 .weekly-sleep-section {
   width: 18em;
   height: 15em;
+}
+.challenges-section {
+  height: 10em;
+  width: 17em;
+}
+.current-date {
+  font-size: .25em;
 }

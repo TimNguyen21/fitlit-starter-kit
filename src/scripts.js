@@ -2,6 +2,7 @@ let welcomeDisplay = document.querySelector('.display-name');
 let userFullName = document.querySelector('.full-name');
 let userAddress = document.querySelector('.address');
 let userEmail = document.querySelector('.email');
+let friendChallengesInfo = document.querySelector('.challenges-info');
 let userStrideLength = document.querySelector('.stride-length');
 let userStepGoal = document.querySelector('.daily-step-goal');
 let allUsersAvgStepGoal = document.querySelector('.all-users-step-goal-average');
@@ -77,6 +78,7 @@ function hydrationHandler() {
   const activity = new Activity(usersRepository, activityData);
   const userDateRange = ["2019/06/16","2019/06/17","2019/06/18","2019/06/19","2019/06/20","2019/06/21","2019/06/22"];
   const currentDate = '2019/06/22';
+  const userFriends = user.friends;
   let currentUserActivityData = activity.findUserActivityDataByDate(currentDate);
   totalStepsOfCurrentDay.innerText = currentUserActivityData.numSteps;
   flightsOfStairsOfCurrentDay.innerText = currentUserActivityData.flightsOfStairs;
@@ -87,6 +89,9 @@ function hydrationHandler() {
   allUserAverageFlightStairsOfCurrentDay.innerText = `Average Flight of Stairs Climb: ${activity.findAllUserAverageStairsClimbedForSpecificDate(currentDate)}`;
   let currentWeekUserActivityData = activity.findUserDailyActivityDataForWeek(userDateRange);
   userWeeklyActivityInfo.innerHTML = activityWeek(currentWeekUserActivityData);
+  let friendChallengeSummary = activity.findUserFriendsStepTotal(userFriends, userData, userDateRange);
+  friendChallengesInfo.innerHTML = friendChallenge(friendChallengeSummary);
+  // `friends: ${activity.findUserFriendsStepTotal(friends, userDataSet, dateRange)}`
 }
 
 function profileHandler() {
@@ -100,6 +105,15 @@ function profileHandler() {
   userStrideLength.innerText = `Stride Length: ${user.strideLength}`;
   userStepGoal.innerText = `Your Daily Step Goal: ${user.dailyStepGoal}`;
   allUsersAvgStepGoal.innerText = `Average User's Step Goal: ${usersRepository.calculateAverageStepGoal(userData)}`;
+}
+
+function friendChallenge(findUserFriendsStepTotal) {
+  return findUserFriendsStepTotal.reduce((acc, el) => {
+    acc += `<div>Friend Name: ${el.name}</div>
+            <div>Steps: ${el.stepTotal}</div>`
+    return acc
+  }, ``)
+
 }
 
 function sleepWeekHours(userWeekSleep) {
