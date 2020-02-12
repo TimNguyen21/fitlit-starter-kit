@@ -1,14 +1,51 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  padding-top: .5%;
+}
+
 body {
-  background-color: #5CDB95;
+  /* background-color: #5CDB95; */
+  background-color: #002b66;
+}
+main {
+  background-color: white;
+  /* opacity: .5; */
+  display: flex;
+  flex-wrap: wrap;
 }
 .profile-section,
-.hydration-section,
-.sleep-section,
+.daily-hydration-section,
+.weekly-hydration-section,
+.daily-sleep-section,
+.weekly-sleep-section,
 .activity-section {
-  background-color: #EDFDE1;
+  color: #002b66;
+  background-color: #5CDB95;
+  font-family: 'Noto Sans KR', sans-serif;
+  opacity: .9;
   height: 35em;
   width: 33%;
-  border: 3px solid black;
+  border-radius: 30px;
+  /* border: 1px solid black; */
+  /* border-radius: 10%; */
+  text-align: center;
+  margin: 2em;
+  overflow: scroll;
+}
+
+header {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 5em;
+  text-align: center;
+  background-color: #002b66;
+  color: white;
+  padding-bottom: .3em;
+}
+
+.display-name {
+  font-size: .4em;
 }
 
 .profile-section{
@@ -17,9 +54,15 @@ body {
 .activity-section {
   height: 70em;
 }
-.hydration-section {
-  height: 28em;
+.daily-hydration-section {
+  height: 10em;
+  width: 17em;
 }
-.sleep-section {
-  height: 50em;
+.daily-sleep-section {
+  height: 12em;
+  width: 17em;
+}
+.weekly-sleep-section {
+  width: 18em;
+  height: 15em;
 }
