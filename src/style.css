@@ -20,6 +20,7 @@ main {
 .weekly-hydration-section,
 .daily-sleep-section,
 .weekly-sleep-section,
+.weekly-activity-section,
 .activity-section,
 .challenges-section,
 .trends-section,
@@ -55,19 +56,17 @@ header {
   height: 15em;
   width: 32em;
 }
-.activity-section {
-  height: 70em;
-}
+
+.daily-sleep-section,
+.daily-activity-section,
 .daily-hydration-section {
-  height: 10em;
-  width: 17em;
-}
-.daily-sleep-section {
   height: 12em;
-  width: 22em;
+  width: 24em;
 }
-.weekly-sleep-section {
-  width: 18em;
+.weekly-sleep-section,
+.weekly-hydration-section,
+.weekly-activity-section {
+  width: 24em;
   height: 15em;
 }
 .challenges-section {
@@ -81,7 +80,7 @@ header {
   height: 15em;
   width: 20em;
 }
-.daily-activity-section {
-  height: 12em;
-  width: 30em;
+.flame-icon {
+  height: 1em;
+  width: 1em;
 }
