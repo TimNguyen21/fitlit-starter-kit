@@ -6,45 +6,44 @@
 }
 
 body {
-  /* background-color: #5CDB95; */
   background-color: #002b66;
 }
+
 main {
   background-color: white;
-  /* opacity: .5; */
   display: flex;
   flex-wrap: wrap;
 }
+
 .profile-section,
 .daily-hydration-section,
 .weekly-hydration-section,
 .daily-sleep-section,
 .weekly-sleep-section,
+.weekly-activity-section,
 .activity-section,
 .challenges-section,
 .trends-section,
 .daily-activity-section {
-  color: #002b66;
   background-color: #5CDB95;
-  font-family: 'Noto Sans KR', sans-serif;
-  opacity: .9;
-  height: 35em;
-  width: 33%;
   border-radius: 30px;
-  /* border: 1px solid black; */
-  /* border-radius: 10%; */
-  text-align: center;
+  color: #002b66;
+  font-family: 'Noto Sans KR', sans-serif;
+  height: 35em;
   margin: 2em;
+  opacity: .9;
   overflow: scroll;
+  text-align: center;
+  width: 33%;
 }
 
 header {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 5em;
-  text-align: center;
   background-color: #002b66;
   color: white;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 5em;
   padding-bottom: .3em;
+  text-align: center;
 }
 
 .display-name {
@@ -55,33 +54,30 @@ header {
   height: 15em;
   width: 32em;
 }
-.activity-section {
-  height: 70em;
-}
+
+.daily-sleep-section,
+.daily-activity-section,
 .daily-hydration-section {
-  height: 10em;
-  width: 17em;
-}
-.daily-sleep-section {
   height: 12em;
-  width: 22em;
+  width: 24em;
 }
-.weekly-sleep-section {
-  width: 18em;
+.weekly-sleep-section,
+.weekly-hydration-section,
+.weekly-activity-section {
+  width: 24em;
   height: 15em;
 }
-.challenges-section {
-  height: 15em;
-  width: 20em;
-}
-.current-date {
-  font-size: .25em;
-}
+.challenges-section,
 .trends-section {
   height: 15em;
   width: 20em;
 }
-.daily-activity-section {
-  height: 12em;
-  width: 30em;
+
+.current-date {
+  font-size: .25em;
+}
+
+.flame-icon {
+  height: 1em;
+  width: 1em;
 }

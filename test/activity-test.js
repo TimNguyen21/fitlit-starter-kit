@@ -248,65 +248,6 @@ describe('Activity', function() {
       }
     ];
 
-    activityData3 = [
-      {
-        "userID": 2,
-        "date": "2019/06/15",
-        "numSteps": 4294,
-        "minutesActive": 138,
-        "flightsOfStairs": 10
-      },
-      {
-        "userID": 2,
-        "date": "2019/06/16",
-        "numSteps": 4112,
-        "minutesActive": 220,
-        "flightsOfStairs": 37
-      },
-      {
-        "userID": 2,
-        "date": "2019/06/17",
-        "numSteps": 13750,
-        "minutesActive": 50,
-        "flightsOfStairs": 4
-      },
-      {
-        "userID": 2,
-        "date": "2019/06/18",
-        "numSteps": 4662,
-        "minutesActive": 181,
-        "flightsOfStairs": 31
-      },
-      {
-        "userID": 2,
-        "date": "2019/06/19",
-        "numSteps": 9858,
-        "minutesActive": 243,
-        "flightsOfStairs": 44
-      },
-      {
-        "userID": 2,
-        "date": "2019/06/20",
-        "numSteps": 10153,
-        "minutesActive": 300,
-        "flightsOfStairs": 10
-      },
-      {
-        "userID": 2,
-        "date": "2019/06/21",
-        "numSteps": 10225,
-        "minutesActive": 174,
-        "flightsOfStairs": 26
-      },
-      {
-        "userID": 2,
-        "date": "2019/06/22",
-        "numSteps": 3605,
-        "minutesActive": 124,
-        "flightsOfStairs": 31
-      }
-    ];
-
     userDataSetSample = [
       {
         "id": 1,
