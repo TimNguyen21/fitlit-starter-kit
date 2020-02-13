@@ -197,64 +197,65 @@ class Activity {
         .find(data => data.userID === this.userID && data.date === day));
     })
 
-    let usersStepSummary = userActivitySummary.map(data => {
+    let usersActivitySummary = userActivitySummary.map(data => {
       return {date: data["date"], numSteps: data["numSteps"],
         minutesActive: data["minutesActive"]}
     })
 
-    return usersStepSummary;
+    return usersActivitySummary;
   }
 
 
-  findNumsStepTrends(weeklyStepsData) {
-    let array = []
-    let overThreeArray = []
+  findNumsStepTrends(weeklyActivityData) {
+    let currentPass = []
+    let overThreeTrends = []
     let currentStepCount = 0
 
-    weeklyStepsData.forEach(data => {
+    weeklyActivityData.forEach(data => {
       if (data.numSteps >= currentStepCount) {
-        array.push(data);
+        currentPass.push(data);
         currentStepCount = data.numSteps;
-        if (array.length >= 3) {
-          overThreeArray = array;
+        if (currentPass.length >= 3) {
+          overThreeTrends = currentPass;
         }
       } else if (data.numSteps < currentStepCount) {
         currentStepCount = 0;
-        array = [data];
+        currentPass = [];
       }
     })
 
-    if (overThreeArray.length > 2) {
-      return overThreeArray
+    if (overThreeTrends.length > 2) {
+      return overThreeTrends
     } else {
-    return `No increasing steps trend over 3 days`
+      return `No increasing steps trend over 3 days`
     }
   }
 
-  findMinutesActiveTrends(weeklyStepsData) {
-    let array = []
-    let overThreeArray = []
-    let currentStepCount = 0
+  findMinutesActiveTrends(weeklyActivityData) {
+    let currentPass = [];
+    let overThreeTrends = [];
+    let currentMinutesCount = 0;
 
-    weeklyStepsData.forEach(data => {
-      if (data.minutesActive >= currentStepCount) {
-        array.push(data);
-        currentStepCount = data.minutesActive;
-        if (array.length >= 3) {
-          overThreeArray = array;
+    weeklyActivityData.forEach(data => {
+      if (data.minutesActive >= currentMinutesCount) {
+        currentPass.push(data)
+        currentMinutesCount = data.minutesActive;
+        if (currentPass.length >= 2) {
+          overThreeTrends = currentPass;
         }
-      } else if (data.minutesActive < currentStepCount) {
-        currentStepCount = 0;
-        array = [data];
+      } else if (data.minutesActive < currentMinutesCount) {
+        currentMinutesCount = 0;
+        currentPass = [];
       }
     })
 
-    if (overThreeArray.length > 2) {
-      return overThreeArray
+    if (overThreeTrends.length > 2) {
+      return overThreeTrends
     } else {
-    return `No increased active minutes trend over 3 days`
+      return `No increased active minutes trend over 3 days`
     }
   }
+
 }
 
 if (typeof module !== 'undefined') {
